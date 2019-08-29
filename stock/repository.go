@@ -44,7 +44,9 @@ func (r *repositoryImpl) Insert(stock *Stock) (*Stock, error) {
 func (r repositoryImpl) FindByID(id string) (*Stock, error) {
 	objID, _ := primitive.ObjectIDFromHex(id)
 	stock := &Stock{}
-	filter := bson.M{"_id": objID}
+	filter := bson.D{
+		{"_id", objID},
+	}
 
 	if err := r.collection.FindOne(context.Background(), filter).Decode(stock); err != nil {
 		return nil, err

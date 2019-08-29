@@ -51,7 +51,7 @@ func getStock(c *gin.Context) {
 	stock, err := stockService.Get(id)
 
 	c.JSON(http.StatusOK, gin.H{
-		"id":   stock.ID,
+		"id":   stock.ID.String(),
 		"name": stock.Name,
 	})
 }
